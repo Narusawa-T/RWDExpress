@@ -1,21 +1,26 @@
 # RWD Express (latest version 0.0.1 on 16Jun2025)
-A SAS package to help creating SAS packages
+A SAS package to help you handle big data like RWD
 
 ![logo](https://github.com/Narusawa-T/RWDExpress/blob/main/RWDExpress_small.png)
 
-**"RWD Express"**. The package is to help creating SAS packages. <br>Shaping onigiri(rice ball) by hands can be a bit challenging for beginners, but using onigiri mold makes it easy to form and provides a great introduction. Hope the mold(RWDExpress) will help you to create your SAS package.
+**"RWD Express"**. The package is to help handling a big data.
 
-## %index_single_key() : excel to package
+## %index_single_key() : index key
 1. **Put information** of SAS package you want to create **into an excel file** <br>(you can find template file in ./RWDExpress/addcnt)
 2. %ex2pac(excel_file, package_location, complete_generation) will convert the excel into SAS package structure(folders and files) and execute %generatePackage() (optional) to package zip file
 
 Sample code:
 ~~~sas
-%ex2pac(
-	excel_file=C:\Temp\template_package.xlsx,   /* Path of input excel file */
-	package_location=C:\Temp\SAS_PACKAGES\packages,   /* Output path */
-	complete_generation=Y)   /* Set Y(default) to execute %generagePackage() for completion */
+%index_single_key(
+  inlib = data,   /*inlib  :  library reference where original datasets are located*/
+  outlib= datax,  /*outlib:   library reference where output datasets with index data to be stored*/
+  indexkey= subjectid, /*indexkey: index key variable for all datasets.e.g: %str(patientid)	*/
+  in_ds= , /*in_ds(optional): datasets to be extracted. e.g: %str("AE" "CM" "DM")  */		
+  ex_ds=,  /*ex_ds(optional): datasets to be excluded. e.g: %str("XX" "XY" "XS")  */
+  ds_select_cond =); /*ds_select_cond(optional): Condition to extract datasets.
+		       Note: where condition to extract the datasets from output of proc contents. e.g: index(memname,"D_") */
 ~~~
+
 **This allows you to create SAS packages via simple format of excel!**
 
 ## %pac2ex() : package to excel
@@ -45,12 +50,12 @@ When you have SAS Packages Framework enabled, run the following to install and l
  
 /* Enjoy RWDExpress😄 */
 %index_single_key(
-  inlib= ,
-  outlib=,
-  indexkey=,
+  inlib= sdtm,
+  outlib= sdtmx,
+  indexkey= usubjid,
   in_ds=,
   ex_ds=,
-  ds_select_cond =);
+  ds_select_cond = index(memname,"SUPP")=0 );
 ~~~
 
 ## Version history
