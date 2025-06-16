@@ -1,7 +1,7 @@
 # RWD Express (latest version 0.0.1 on 16Jun2025)
 A SAS package to help creating SAS packages
 
-![logo](https://github.com/Narusawa-T/RWDExpress/blob/main/RWDExpress.png)
+![logo](https://github.com/Narusawa-T/RWDExpress/blob/main/RWDExpress_small.png)
 
 **"RWD Express"**. The package is to help creating SAS packages. <br>Shaping onigiri(rice ball) by hands can be a bit challenging for beginners, but using onigiri mold makes it easy to form and provides a great introduction. Hope the mold(RWDExpress) will help you to create your SAS package.
 
