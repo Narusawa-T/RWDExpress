@@ -12,13 +12,13 @@ A SAS package to help you handle big data like RWD
 Sample code:
 ~~~sas
 %index_single_key(
-  inlib = data,   /*inlib  :  library reference where original datasets are located*/
-  outlib= datax,  /*outlib:   library reference where output datasets with index data to be stored*/
-  indexkey= subjectid, /*indexkey: index key variable for all datasets.e.g: %str(patientid)	*/
-  in_ds= , /*in_ds(optional): datasets to be extracted. e.g: %str("AE" "CM" "DM")  */		
-  ex_ds=,  /*ex_ds(optional): datasets to be excluded. e.g: %str("XX" "XY" "XS")  */
-  ds_select_cond =); /*ds_select_cond(optional): Condition to extract datasets.
-		       Note: where condition to extract the datasets from output of proc contents. e.g: index(memname,"D_") */
+  inlib = data,           /*inlib  :  library reference where original datasets are located*/
+  outlib= datax,          /*outlib:   library reference where output datasets with index data to be stored*/
+  indexkey= subjectid,    /*indexkey: index key variable for all datasets.e.g: %str(patientid)	*/
+  in_ds= ,                /*in_ds(optional): datasets to be extracted. e.g: %str("AE" "CM" "DM")  */		
+  ex_ds=,                 /*ex_ds(optional): datasets to be excluded. e.g: %str("XX" "XY" "XS")  */
+  ds_select_cond =);      /*ds_select_cond(optional): Condition to extract datasets.
+		            Note: where condition to extract the datasets from output of proc contents. e.g: index(memname,"D_") */
 ~~~
 
 **This allows you to create SAS packages via simple format of excel!**
@@ -53,8 +53,6 @@ When you have SAS Packages Framework enabled, run the following to install and l
   inlib= sdtm,
   outlib= sdtmx,
   indexkey= usubjid,
-  in_ds=,
-  ex_ds=,
   ds_select_cond = index(memname,"SUPP")=0 );
 ~~~
 
