@@ -3,11 +3,12 @@ A SAS package to help you handle big data like RWD
 
 ![logo](https://github.com/Narusawa-T/RWDExpress/blob/main/RWDExpress_small.png)
 
-**"RWD Express"**. The package is to help handling a big data.
+**"RWD Express"**. The package is to help handle a big data.
+Under construction, stay tuned!
 
 ## %index_single_key() : index key
-1. **Put information** of SAS package you want to create **into an excel file** <br>(you can find template file in ./RWDExpress/addcnt)
-2. %ex2pac(excel_file, package_location, complete_generation) will convert the excel into SAS package structure(folders and files) and execute %generatePackage() (optional) to package zip file
+1. Pick single key for index such as patient ID 
+2. 
 
 Sample code:
 ~~~sas
@@ -21,9 +22,6 @@ Sample code:
 		            Note: where condition to extract the datasets from output of proc contents. e.g: index(memname,"D_") */
 ~~~
 
-**This allows you to create SAS packages via simple format of excel!**
-
-## %pac2ex() : package to excel
 Under construction, stay tuned!
 
 ## How to use RWDExpress? (quick start)
