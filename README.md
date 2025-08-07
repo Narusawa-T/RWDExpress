@@ -3,12 +3,8 @@ A SAS package to help you handle big data like RWD
 
 ![logo](https://github.com/Narusawa-T/RWDExpress/blob/main/RWDExpress_small.png)
 
-**"RWD Express"**. The package is to help handle a big data.
-Under construction, stay tuned!
-
 ## %index_single_key() : index key
-1. Pick single key for index such as patient ID 
-2. 
+You can set one index key for all datasets in the library at once.
 
 Sample code:
 ~~~sas
@@ -22,44 +18,61 @@ Sample code:
 		            Note: where condition to extract the datasets from output of proc contents. e.g: index(memname,"D_") */
 ~~~
 
-Under construction, stay tuned!
+## What is SAS Packages?
 
-## How to use RWDExpress? (quick start)
-Create directory for your packages and assign a fileref to it.
-~~~sas
+The package is built on top of **SAS Packages framework(SPF)** developed by Bartosz Jablonski.  
+
+For more information about SAS Packages framework, see [SAS_PACKAGES](https://github.com/yabwon/SAS_PACKAGES).  
+
+You can also find more SAS Packages(SASPACs) in [SASPAC](https://github.com/SASPAC).
+ 
+## How to use SAS Packages? (quick start)
+
+### 1. Set-up SPF(SAS Packages Framework)
+
+Firstly, create directory for your packages and assign a fileref to it.
+
+~~~sas      
+
 filename packages "\path\to\your\packages";
-~~~
- 
-Enable the SAS Packages Framework (if you have not done it yet):
-~~~sas
-%include packages(SPFinit.sas)
-~~~
- 
-(If you don't have SAS Packages Framework installed follow the [instruction](https://github.com/yabwon/HoW-SASPackages/blob/main/Share%20your%20code%20with%20SAS%20Packages%20-%20a%20Hands-on-Workshop.md#how-to-install-the-sas-packages-framework).)
- 
- 
-When you have SAS Packages Framework enabled, run the following to install and load the package:
- 
-~~~sas
- 
-/* Install and load RWDExpress */
-%installPackage(RWDExpress, sourcePath=https://github.com/Narusawa-T/RWDExpress/raw/main/)   /* Install RWDExpress to your place */
-%loadPackage(RWDExpress)
- 
-/* Enjoy RWDExpress😄 */
-%index_single_key(
-  inlib= sdtm,
-  outlib= sdtmx,
-  indexkey= usubjid,
-  ds_select_cond = index(memname,"SUPP")=0 );
+
 ~~~
 
+Secondly, enable the SAS Packages Framework.  
+
+(If you don't have SAS Packages Framework installed, follow the instruction in [SPF documentation](https://github.com/yabwon/SAS_PACKAGES/tree/main/SPF/Documentation) to install SAS Packages Framework.)  
+
+~~~sas      
+
+%include packages(SPFinit.sas)
+
+~~~  
+
+### 2. Install SAS package  
+
+Install SAS package you want to use using %installPackage() in SPFinit.sas.
+
+~~~sas      
+
+%installPackage(packagename, sourcePath=\github\path\for\packagename)
+
+~~~
+
+(e.g. %installPackage(ABC, sourcePath=https://github.com/XXXXX/ABC/raw/main/))  
+
+### 3. Load SAS package  
+
+Load SAS package you want to use using %loadPackage() in SPFinit.sas.
+
+~~~sas      
+
+%loadPackage(packagename)
+
+~~~
+
+### Enjoy😁
+
+---
+ 
 ## Version history
 0.0.1(16June2025)	: Initial version
-
-## What is SAS Packages?
-RWDExpress is built on top of **SAS Packages framework(SPF)** developed by Bartosz Jablonski.  
-For more information about SAS Packages framework, see [SAS_PACKAGES](https://github.com/yabwon/SAS_PACKAGES).  
-You can also find more SAS Packages(SASPACs) in [SASPAC](https://github.com/SASPAC).
-
-
