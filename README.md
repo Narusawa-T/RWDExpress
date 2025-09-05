@@ -1,3 +1,4 @@
+
 # RWD Express (latest version 0.1.0 on 05Sep2025)
 A SAS package to help you handle a big data like RWD
 
@@ -27,11 +28,12 @@ You can specify the target datasets using the optional parameter in_ds or ex_ds.
 ~~~
 You can specify the target datasets using condition using the optional parameterds_select_cond.
 ~~~sas
-%index_single_key(inlib=rwd, outlib=rwdx, indexkey=patid, in_ds = index(memname,"MASTER_")=0);
+%index_single_key(inlib=rwd, outlib=rwdx, indexkey=patid, ds_select_cond = index(memname,"MASTER_")=0);
 ~~~
 
-### Note:
+### Note
 This macro creates a single index key to all datasets, supporting streamlined patient data extraction. Remember, only one key variable should be specified, typically the patient ID.
+
 ---
 
 ## %small_world() 
@@ -64,21 +66,21 @@ Extract first 1000 subjects in rwdx.PATIENT from datasets in rwdx then store the
 	     subject_level_ds=rwdx.PATIENT, 
 	     subject_id_var=patid, no_sub=1000);
 ~~~
+### Note
+If the original datasets have index of subject_id_var, the macro can extract dataset extremely fast.
 
-### Note:
-If the original datasets have index of subject_id_var, the macro can extract dataset extlemely fast.
-~~~
+---
 
-## %split_world()
+## %split_world() 
 `%split_world` is a macro which allow user to split the large dataset in to small piecies. so that user can process one by one.
 
 ### Parameters
  - `inlib`  :  libname where target dataset are located.
  - `indata` :  target dataset e.g: act
- - `outlib(defaul to work)` :  libname split datasets (e.g: act001,act002...) to be stored
-nperBlock : the number of records split dataset will have in one dataset
- - `blockstart(defaul to 1)` : the start of block. It starts from the first block if not specified.
- - `blockend` : the end of blok, if not specified, it ends with the last block if not specified.
+ - `outlib(default to work)` :  libname split datasets (e.g: act001,act002...) to be stored
+ - `nperBlock` : the number of records split dataset will have in one dataset
+ - `blockstart(default to 1)` : the start of block. It starts from the first block if not specified.
+ - `blockend` : the end of block, if not specified, it ends with the last block if not specified.
 ### Sample code
 
 Split disease dataset in rwd into small datasets with 100000 observations.
@@ -95,7 +97,7 @@ You can specify which datasets you want and store them in the library split.
 * from 6th to the end;
 %split_world(inlib=rwd, indata=d02_actdata, outlib=split, nperBlock=100000, blockstart=6);
 ~~~
-### Note:
+### Note
 
 ---
 
@@ -164,5 +166,3 @@ Load SAS package you want to use with the SPF's `%loadPackage()` macro.
 ### Enjoy!
 
 ---
-
-
