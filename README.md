@@ -1,5 +1,5 @@
 
-# RWD Express (latest version 0.1.0 on 05Sep2025)
+# RWD Express (latest version 0.1.1 on 22Sep2025)
 A SAS package to help you handle a big data like RWD
 
 ![logo](https://github.com/Narusawa-T/RWDExpress/blob/main/RWDExpress_small.png)
@@ -102,6 +102,7 @@ You can specify which datasets you want and store them in the library split.
 ---
 
 ## Version history
+0.1.1(22Sep2025)	: Bug fixed for %small_world.  
 0.1.0(05Sep2025)	: Two new macros(%small_world, %split_world) released.  
 0.0.1(16Jun2025)	: Initial version
 
