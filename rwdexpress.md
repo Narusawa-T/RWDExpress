@@ -9,17 +9,17 @@
 ### Version information:
   
 - Package: RWDExpress
-- Version: 0.1.0
-- Generated: 2025-09-05T10:11:48
+- Version: 0.1.1
+- Generated: 2025-09-22T22:10:52
 - Author(s): T.Narusawa(t.narusawa.i@gmail.com)
 - Maintainer(s): T.Narusawa(t.narusawa.i@gmail.com)
 - License: MIT
-- File SHA256: `F*70F07B6B40BA11407BD03F859B459BA910516A52FE56D0EBCCDC80D210F20D81` for this version
-- Content SHA256: `C*35EAC6A450A411C8A0C498F718AE964A816C5C059C301F202F9144509B3B4E67` for this version
+- File SHA256: `F*434AF407A7AD43493CF531672EE37E20379AA503832EE9F7EFECD0EC832FC6BE` for this version
+- Content SHA256: `C*F27989705B4784B8AAEF154EA2FA21F6B17E0BACAC1BE0072BC91F13A7A1FD81` for this version
   
 ---
  
-# The `RWDExpress` package, version: `0.1.0`;
+# The `RWDExpress` package, version: `0.1.1`;
   
 ---
  
