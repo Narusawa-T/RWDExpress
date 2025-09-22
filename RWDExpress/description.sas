@@ -1,7 +1,7 @@
 Type : Package
 Package : RWDExpress
 Title : RWD Express Package
-Version : 0.1.0
+Version : 0.1.1
 Author : T.Narusawa(t.narusawa.i@gmail.com)
 Maintainer : T.Narusawa(t.narusawa.i@gmail.com)
 License : MIT

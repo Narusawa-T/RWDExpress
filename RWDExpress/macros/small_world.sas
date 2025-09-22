@@ -108,41 +108,24 @@ If the original datasets have index of subject_id_var, the macro can extract dat
 	%put extracted datasets will be output to <&p_outlib.>;
 
 
-    ********** subject_level_ds existence check **** ;
+    ********** subject_level_ds existence check >> remove **** ;
 
 	proc contents data=&inlib.._all_ out=x__dslist0(keep=memname name type) noprint; 
-
-	proc sort data=x__dslist0 out=x__dslistwlb;
-	    where upcase(memname) = "%upcase(%scan(&subject_level_ds., 2,'.'))";
-	    by memname;
-    run;
-
 	data _null_;
-		set x__dslistwlb;
+		set x__dslist0;
 		if upcase(name) = "%upcase(&subject_id_var)" 
 		then call symput("v_type",strip(put(type,best.)));
 	run;
 	%put &v_type. ;   
 	
-	proc sql noprint;
-		select compress(put(count(*),best.)) into :NOC from x__dslistwlb;
-	quit;
-
-	%if &NOC eq 0 %then %do;
-        %put %str(ER)%str(ROR: SASPAC Dataset "&subject_level_ds." DOES NOT EXIST.); 
-        %goto exit;
-  	%end;   	
-
-
+	
     ********** ds_select_cond existence check **** ;
 
+   %if %length(&ds_select_cond.) > 0  %then %do;
 	data _null_;
         set x__dslist0 ;
-
-        %if %length(&ds_select_cond.) > 0  %then %do;
             where &ds_select_cond.;
             %put "NOTE: where condition applied";
-        %end;
     run ;
 
     proc sql noprint;
@@ -153,7 +136,7 @@ If the original datasets have index of subject_id_var, the macro can extract dat
         %put %str(ER)%str(ROR: No datasets match the condition specified in ds_select_cond: &ds_select_cond.);
         %goto exit;
     %end;
-
+  %end;
 
     ********** subject_id_var existence check **** ;
 
@@ -187,7 +170,7 @@ If the original datasets have index of subject_id_var, the macro can extract dat
 
     *** Processing for duplicates ;
     %if &dupout_count >0  %then %do;
-        %put %str(NOTE: It’s not at the Subject Level, but it will be used after Nodup. Sort and extract the first No_SUB.); 
+        %put %str(NOTE: It is not at the Subject Level, but it will be used after Nodup. Sort and extract the first No_SUB.); 
 
         *** Output unique datasets as x__subject_level_ds ;
         data x__subject_level_ds;
@@ -212,7 +195,9 @@ If the original datasets have index of subject_id_var, the macro can extract dat
 	********** applies where condition ****;
 	data x__dslist ;
 		set x__dslist;
-		where &ds_select_cond.;
+	    %if %length(&ds_select_cond.) > 0  %then %do;
+		  where &ds_select_cond.;
+	    %end;
 		key1=1;
 	run;
 		
